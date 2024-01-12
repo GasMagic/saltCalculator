@@ -1,15 +1,15 @@
-# create2crunch
+# saltCalculator
 
 > A Rust program for finding salts that create gas-efficient Ethereum addresses via CREATE2.
 
-Provide three arguments: a factory address (or contract that will call CREATE2), a caller address (for factory addresses that require it as a protection against frontrunning), and the keccak-256 hash of the initialization code of the contract that the factory will deploy. (The example below references [`Create2Factory` on Ropsten](https://ropsten.etherscan.io/address/0xa779284f095ef2eBb8ee26cd8384e49C57b26996).)
+Provide three arguments: a factory address (or contract that will call CREATE2), a caller address (for factory addresses that require it as a protection against frontrunning), and the keccak-256 hash of the initialization code of the contract that the factory will deploy.)
 
 ```sh
-$ git clone https://github.com/0age/create2crunch
+$ git clone https://github.com/GasMagic/saltCalculator
 $ cd create2crunch
-$ export FACTORY="0xa779284f095ef2eBb8ee26cd8384e49C57b26996"
-$ export CALLER="<YOUR_ROPSTEN_ADDRESS_OF_CHOICE_GOES_HERE>"
-$ export INIT_CODE_HASH="<HASH_OF_YOUR_CONTRACT_INIT_CODE_GOES_HERE>"
+$ export FACTORY="0x0000346fEb0000002919F700F261D41400d300FC"
+$ export CALLER="<YOUR_DEPLOYER_ADDRESS>"
+$ export INIT_CODE_HASH="<HASH_OF_YOUR_CONTRACT_INIT_CODE>"
 $ cargo run --release $FACTORY $CALLER $INIT_CODE_HASH
 ```
 
@@ -18,5 +18,3 @@ For each efficient address found, the salt, resultant addresses, and value *(i.e
 This tool was originally built for use with [`Pr000xy`](https://github.com/0age/Pr000xy), including with [`Create2Factory`](https://github.com/0age/Pr000xy/blob/master/contracts/Create2Factory.sol) directly.
 
 There is also an experimental OpenCL feature that can be used to search for addresses using a GPU. To give it a try, include a fourth parameter specifying the device ID to use, and optionally a fifth and sixth parameter to filter returned results by a threshold based on leading zero bytes and total zero bytes, respectively. By way of example, to perform the same search as above, but using OpenCL device 2 and only returning results that create addresses with at least four leading zeroes or six total zeroes, use `$ cargo run --release $FACTORY $CALLER $INIT_CODE_HASH 2 4 6` (you'll also probably want to try tweaking the `WORK_SIZE` parameter in `src/lib.rs`).
-
-PRs welcome!
