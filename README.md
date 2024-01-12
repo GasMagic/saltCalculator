@@ -6,7 +6,7 @@ Provide three arguments: a factory address (or contract that will call CREATE2),
 
 ```sh
 $ git clone https://github.com/GasMagic/saltCalculator
-$ cd create2crunch
+$ cd saltCalculator
 $ export FACTORY="0x0000346fEb0000002919F700F261D41400d300FC"
 $ export CALLER="<YOUR_DEPLOYER_ADDRESS>"
 $ export INIT_CODE_HASH="<HASH_OF_YOUR_CONTRACT_INIT_CODE>"
