@@ -89,7 +89,7 @@ while True:
     most_valuable_index = d.index(max(d))
     print('\nmost valuable submission found:', d[most_valuable_index])
     print('found at line:', most_valuable_index + 1)
-    print(' * salt:', content[most_valuable_index][:66])
+    print(' * salt:', '0x'+content[most_valuable_index][42:66])
     print(' * contract address:', content[most_valuable_index][70:112])
 
     leading_zero_bytes = 0
